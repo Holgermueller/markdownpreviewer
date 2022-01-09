@@ -8,6 +8,18 @@ function App() {
     #Heading
 
     ##Subheading
+
+    -list item 1
+    -list item 2
+    -list item 3
+
+    >Block quote
+
+    [Link to Google](https://www.google.com/)
+
+    **Bold text**
+
+
     `
   );
   return (
@@ -24,8 +36,9 @@ function App() {
             <textarea
               type="text"
               id="editor"
-              className="form-control-lg"
+              className="form-control-lg editor"
               value={mrkdwn}
+              onChange={(e) => mrkdwn(e.target.value)}
             ></textarea>
           </div>
 
