@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 const marked = require("marked");
 
-function App() {
-  const [mrkdwn] = useState(
+export default function App() {
+  const [mrkdwn, setValue] = useState(
     `
     #Heading
 
@@ -19,9 +19,14 @@ function App() {
 
     **Bold text**
 
-
     `
   );
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setValue(e.target.value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -32,24 +37,27 @@ function App() {
         <div className="row">
           <div className="col">
             <div className="form-floating">Editor </div>
-
             <textarea
               type="text"
               id="editor"
               className="form-control-lg editor"
               value={mrkdwn}
-              onChange={(e) => mrkdwn(e.target.value)}
+              onChange={handleChange}
             ></textarea>
           </div>
 
           <div className="col">
             <div className="preview-label">Preview</div>
-            <div id="preview" className="preview-area"></div>
+            <div
+              id="preview"
+              className="preview-area"
+              dangerouslySetInnerHTML={{
+                __html: marked(mrkdwn),
+              }}
+            ></div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default App;
