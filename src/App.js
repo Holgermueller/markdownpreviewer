@@ -1,23 +1,35 @@
 import { useState } from "react";
 import "./App.css";
-const marked = require("marked");
+import { marked } from "marked";
 
 export default function App() {
   const [mrkdwn, setValue] = useState(
     `
-    #Heading
+# Heading
 
-    ##Subheading
+## Subheading
 
-    -list item 1
-    -list item 2
-    -list item 3
+- list item 1
+- list item 2
+- list item 3
 
-    >Block quote
+> Block quote
 
-    [Link to Google](https://www.google.com/)
+[Link to Google](https://www.google.com/)
 
-    **Bold text**
+**Bold text**
+
+### Some code:
+
+\`\`\`
+
+const handleChange = (e) => {
+  e.preventDefault();
+  setValue(e.target.value);
+};
+
+\`\`\`
+
 
     `
   );
@@ -48,13 +60,15 @@ export default function App() {
 
           <div className="col">
             <div className="preview-label">Preview</div>
-            <div
-              id="preview"
-              className="preview-area"
-              dangerouslySetInnerHTML={{
-                __html: marked(mrkdwn),
-              }}
-            ></div>
+            <div className="preview-area">
+              <div
+                id="preview"
+                className="preview-text"
+                dangerouslySetInnerHTML={{
+                  __html: marked.parse(mrkdwn),
+                }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>

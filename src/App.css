@@ -4,6 +4,7 @@
 .editor {
   width: 100%;
   height: 100%;
+  text-align: left;
 }
 .preview-area {
   border: 1px solid black;
@@ -11,4 +12,8 @@
   min-height: 300px;
   width: 100%;
   display: block;
+}
+.preview-text {
+  padding: 4px;
+  text-align: left;
 }
